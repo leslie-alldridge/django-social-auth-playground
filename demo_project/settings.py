@@ -56,6 +56,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'demo_project.urls'
 
+# redirect urls for auth
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
