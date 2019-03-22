@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+    'corsheaders',
+
     'users',
     'pages',
 ]
@@ -53,6 +55,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,6 +80,27 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True  # we want to store their email in django
 ACCOUNT_USERNAME_REQUIRED = False  # we're not worried about user names
+
+# CORS config
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:5000',
+#     '127.0.0.1:5000'
+#     'localhost:3000',
+#     '127.0.0.1:3000'
+# )
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = (
+    'xsrfheadername',
+    'xsrfcookiename',
+    'content-type',
+    "X-CSRFTOKEN"
+)
+
+
+CSRF_COOKIE_NAME = "X-CSRFTOKEN"
+
 
 TEMPLATES = [
     {
