@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +47,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'corsheaders',
-
     'users',
     'pages',
 ]
@@ -54,11 +55,12 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -80,27 +82,6 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True  # we want to store their email in django
 ACCOUNT_USERNAME_REQUIRED = False  # we're not worried about user names
-
-# CORS config
-# CORS_ORIGIN_WHITELIST = (
-#     'localhost:5000',
-#     '127.0.0.1:5000'
-#     'localhost:3000',
-#     '127.0.0.1:3000'
-# )
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = (
-    'xsrfheadername',
-    'xsrfcookiename',
-    'content-type',
-    "X-CSRFTOKEN"
-)
-
-
-CSRF_COOKIE_NAME = "X-CSRFTOKEN"
-
 
 TEMPLATES = [
     {
@@ -169,3 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# we whitelist localhost:3000 because that's where frontend will be served
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000/'
+)
