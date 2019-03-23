@@ -25,7 +25,7 @@ SECRET_KEY = '58u29^u@wy%90)%ni=u5muf1h(g@*el*o$q%nvnxji3*yg!1hl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
-    'corsheaders',
 
     'users',
     'pages',
@@ -55,7 +54,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,18 +86,19 @@ ACCOUNT_USERNAME_REQUIRED = False  # we're not worried about user names
 #     'localhost:3000',
 #     '127.0.0.1:3000'
 # )
-CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_HEADERS = (
-    'xsrfheadername',
-    'xsrfcookiename',
-    'content-type',
-    "X-CSRFTOKEN"
-)
+# CORS_ORIGIN_ALLOW_ALL = True
 
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_HEADERS = (
+#     'xsrfheadername',
+#     'xsrfcookiename',
+#     'content-type',
+#     "X-CSRFTOKEN"
+# )
 
-CSRF_COOKIE_NAME = "X-CSRFTOKEN"
+#CSRF_COOKIE_NAME = "XSRF-TOKEN"
+CSRF_COOKIE_NAME = "csrftoken"
 
 
 TEMPLATES = [
